@@ -1,0 +1,99 @@
+name = "rhel-9-latest-STIG"
+description = "Latest RHEL 9.x release and erratum with STIG OpenSCAP Security Profile"
+version = "0.0.5"
+modules = []
+groups = []
+distro = ""
+
+[[packages]]
+name = "bash-completion"
+
+[[packages]]
+name = "cockpit"
+
+[[packages]]
+name = "cockpit-pcp"
+
+[[packages]]
+name = "cockpit-session-recording"
+
+[[packages]]
+name = "cockpit-storaged"
+
+[[packages]]
+name = "cockpit-system"
+
+[[packages]]
+name = "cockpit-ws"
+
+[[packages]]
+name = "firewalld"
+
+[[packages]]
+name = "openscap-scanner"
+
+[[packages]]
+name = "openscap-utils"
+
+[[packages]]
+name = "pcp-zeroconf"
+
+[[packages]]
+name = "scap-security-guide"
+
+[[packages]]
+name = "subscription-manager-cockpit"
+
+[[packages]]
+name = "vim-enhanced"
+
+[customizations]
+hostname = "rhel9latest-stig-template"
+
+[customizations.kernel]
+append = "fips=1"
+
+[[customizations.sshkey]]
+user = "root"
+key = "ssh-rsa AAAAB3NzvuwYHjcfSMwvNj9dvrec0V demo"
+
+[[customizations.user]]
+name = "myadmin"
+password = "$6$VWQ0E6MeWexjFlnt$Yaeq3eN0kD3NN0"
+key = "ssh-rsa AAAAB3NzvuwYHjcfSMwvNj9dvrec0V demo"
+groups = ["wheel"]
+
+[[customizations.user]]
+name = "mssql"
+key = "ssh-rsa AAAAB3NzvuwYHjcfSMwvNj9dvrec0V demo"
+
+[customizations.timezone]
+timezone = "America/Indiana/Indianapolis"
+ntpservers = ["0.rhel.pool.ntp.org", "1.rhel.pool.ntp.org"]
+[customizations.locale]
+languages = ["en_US.UTF-8"]
+keyboard = "us"
+[customizations.firewall]
+[customizations.firewall.services]
+enabled = ["cockpit", "ssh"]
+[customizations.services]
+enabled = ["cockpit.socket", "sshd.service"]
+
+[[customizations.filesystem]]
+mountpoint = "/"
+size = 10737418240
+
+[[customizations.filesystem]]
+mountpoint = "/home"
+size = 1073741824
+
+[[customizations.filesystem]]
+mountpoint = "/var"
+size = 2147483648
+
+[[customizations.filesystem]]
+mountpoint = "/var/log"
+size = 3221225472
+[customizations.openscap]
+datastream = "/usr/share/xml/scap/ssg/content/ssg-rhel9-ds.xml"
+profile_id = "xccdf_org.ssgproject.content_profile_stig"
