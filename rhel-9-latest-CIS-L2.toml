@@ -1,6 +1,6 @@
 name = "rhel-9-latest-CIS-L2"
 description = "Latest RHEL 9.x release and erratum with CIS L2 OpenSCAP Security Profile"
-version = "0.0.11"
+version = "0.0.14"
 modules = []
 groups = []
 distro = ""
@@ -27,6 +27,9 @@ name = "cockpit-system"
 name = "cockpit-ws"
 
 [[packages]]
+name = "firewalld"
+
+[[packages]]
 name = "openscap-scanner"
 
 [[packages]]
@@ -49,16 +52,17 @@ hostname = "rhel9latest-cis-template"
 
 [[customizations.sshkey]]
 user = "root"
-key = "ssh-rsa AAAA9ogyDyjWkwDuqtz34KW+D0x70dQCJjAyG5Fmg1f/AG7lbrPf demo"
+key = "ssh-rsa AAAAB3NzvuwYHjcfSMwvNj9dvrec0V demo"
 
 [[customizations.user]]
 name = "myadmin"
-key = "ssh-rsa AAAA9ogyDyjWkwDuqtz34KW+D0x70dQCJjAyG5Fmg1f/AG7lbrPf demo"
+password = "$6$VWQ0E6MeWexjFlnt$Yaeq3eN0kD3NN0"
+key = "ssh-rsa AAAAB3NzvuwYHjcfSMwvNj9dvrec0V demo"
 groups = ["wheel"]
 
 [[customizations.user]]
 name = "mssql"
-key = "ssh-rsa AAAA9ogyDyjWkwDuqtz34KW+D0x70dQCJjAyG5Fmg1f/AG7lbrPf demo"
+key = "ssh-rsa AAAAB3NzvuwYHjcfSMwvNj9dvrec0V demo"
 [customizations.timezone]
 timezone = "America/Indiana/Indianapolis"
 ntpservers = ["0.rhel.pool.ntp.org", "1.rhel.pool.ntp.org"]
@@ -88,5 +92,4 @@ mountpoint = "/var/log"
 size = 3221225472
 [customizations.openscap]
 datastream = "/usr/share/xml/scap/ssg/content/ssg-rhel9-ds.xml"
-profile_id = "exported-rhel-9-latest-CIS.toml"
-[customizations.ignition]
+profile_id = "xccdf_org.ssgproject.content_profile_cis"
