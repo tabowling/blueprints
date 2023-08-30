@@ -46,7 +46,7 @@ keyboard = "us"
 enabled = ["ssh"]
 
 [customizations.services]
-enabled = ["sshd.servicea", "crond", "firewalld", "systemd-journald", "rsyslog", "auditd"]
+enabled = ["sshd", "crond", "firewalld", "systemd-journald", "rsyslog", "auditd"]
 disabled = ["nfs-server", "rpcbind"]
 
 [[customizations.filesystem]]
