@@ -1,0 +1,40 @@
+# github repo
+https://github.com/tabowling/blueprints
+https://github.com/ComplianceAsCode/content
+
+# Presentation
+
+
+# Install image builder on a local RHEL node
+yum install -y osbuild-composer composer-cli cockpit-composer bash-completion
+systemctl enable --now osbuild-composer.socket
+systemctl enable --now cockpit.socket
+source /etc/bash_completion.d/composer-cli
+firewall-cmd --add-service=cockpit && firewall-cmd --add-service=cockpit --permanent
+usermod -aG weldr tbowling
+# then access http://localhost:9090
+
+
+# Install OpenSCAP on build node
+yum install -y scap-security-guide openscap-utils openscap-scanner
+
+# Datastream policy files for RHEL 8 & 9, CentOS Stream, & Fedora
+/usr/share/xml/scap/ssg/content/ssg-rhel9-ds.xml
+/usr/share/xml/scap/ssg/content/ssg-rhel8-ds.xml
+/usr/share/xml/scap/ssg/content/ssg-cs9-ds.xml
+/usr/share/xml/scap/ssg/content/ssg-centos8-ds.xml
+/usr/share/xml/scap/ssg/content/ssg-fedora-ds.xml
+
+# Query profiles defined in the datastream files (Hint, they are different)
+oscap info /usr/share/xml/scap/ssg/content/ssg-rhel9-ds.xml
+oscap info --profile cis /usr/share/xml/scap/ssg/content/ssg-rhel9-ds.xml
+oscap info --profile pci-dss /usr/share/xml/scap/ssg/content/ssg-rhel9-ds.xml
+oscap info --profile hipaa /usr/share/xml/scap/ssg/content/ssg-rhel9-ds.xml
+oscap info --profile stig /usr/share/xml/scap/ssg/content/ssg-rhel9-ds.xml
+
+oscap xccdf generate fix --profile cis --fix-type blueprint /usr/share/xml/scap/ssg/content/ssg-rhel9-ds.xml > cisl2_blueprint.toml
+oscap xccdf generate fix --profile pci-dss --fix-type blueprint /usr/share/xml/scap/ssg/content/ssg-rhel9-ds.xml > pcidss_blueprint.toml
+oscap xccdf generate fix --profile hipaa --fix-type blueprint /usr/share/xml/scap/ssg/content/ssg-rhel9-ds.xml > hipaa_blueprint.toml
+oscap xccdf generate fix --profile stig --fix-type blueprint /usr/share/xml/scap/ssg/content/ssg-rhel9-ds.xml > stig_blueprint.toml
+
+oscap-ssh root@util8vm 22 xccdf eval --profile xccdf_org.ssgproject.content_profile_rht-ccp   --results-arf arf.xml --report report.html /usr/share/xml/scap/ssg/content/ssg-rhel8-ds.xml
