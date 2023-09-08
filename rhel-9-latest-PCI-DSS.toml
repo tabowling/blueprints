@@ -17,6 +17,27 @@ name = "openscap-utils"
 [[packages]]
 name = "scap-security-guide"
 
+[[packages]]
+name = "insights-client"
+
+[[packages]]
+name = "rhc"
+
+[[packages]]
+name = "rhc-worker-playbook"
+
+[[packages]]
+name = "glibc-langpack-en"
+
+[[packages]]
+name = "langpacks-en"
+
+[[packages]]
+name = "ansible-core"
+
+[[packages]]
+name = "rhel-system-roles"
+
 [customizations]
 hostname = "rhel9latest-pci-dss-template"
 
