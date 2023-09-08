@@ -6,27 +6,6 @@ groups = []
 distro = ""
 
 [[packages]]
-name = "bash-completion"
-
-[[packages]]
-name = "cockpit"
-
-[[packages]]
-name = "cockpit-pcp"
-
-[[packages]]
-name = "cockpit-session-recording"
-
-[[packages]]
-name = "cockpit-storaged"
-
-[[packages]]
-name = "cockpit-system"
-
-[[packages]]
-name = "cockpit-ws"
-
-[[packages]]
 name = "firewalld"
 
 [[packages]]
@@ -36,16 +15,28 @@ name = "openscap-scanner"
 name = "openscap-utils"
 
 [[packages]]
-name = "pcp-zeroconf"
-
-[[packages]]
 name = "scap-security-guide"
 
 [[packages]]
-name = "subscription-manager-cockpit"
+name = "insights-client"
 
 [[packages]]
-name = "vim-enhanced"
+name = "rhc"
+
+[[packages]]
+name = "rhc-worker-playbook"
+
+[[packages]]
+name = "glibc-langpack-en"
+
+[[packages]]
+name = "langpacks-en"
+
+[[packages]]
+name = "ansible-core"
+
+[[packages]]
+name = "rhel-system-roles"
 
 [customizations]
 hostname = "rhel9latest-stig-template"
