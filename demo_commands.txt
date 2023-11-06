@@ -38,3 +38,11 @@ oscap xccdf generate fix --profile hipaa --fix-type blueprint /usr/share/xml/sca
 oscap xccdf generate fix --profile stig --fix-type blueprint /usr/share/xml/scap/ssg/content/ssg-rhel9-ds.xml > stig_blueprint.toml
 
 oscap-ssh root@util8vm 22 xccdf eval --profile xccdf_org.ssgproject.content_profile_rht-ccp   --results-arf arf.xml --report report.html /usr/share/xml/scap/ssg/content/ssg-rhel8-ds.xml
+
+
+composer-cli blueprints list
+composer-cli compose --help
+composer-cli compose list
+composer-cli compose image
+
+
